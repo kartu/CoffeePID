@@ -154,6 +154,7 @@ function getSettings() {
             $('#inputApPassword').val(responseData.wifi_ap_password);
 
             $('#inputTargetTemp').val(Number(responseData.target_temp));
+            $('#inputTargetSteamTemp').val(Number(responseData.target_steam_temp));
 
             $('#inputPIDkp').val(Number(responseData.pid_kp));
             $('#inputPIDki').val(Number(responseData.pid_ki));
@@ -275,6 +276,7 @@ function postSettings(section) {
             break;
         case 'temp':
             dataString += 'target_temp=' + $('#inputTargetTemp').val();
+            dataString += '&target_steam_temp=' + $('#inputTargetSteamTemp').val();
             break;
         case 'reboot':
             dataString += 'reboot=true';

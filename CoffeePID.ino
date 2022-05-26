@@ -46,7 +46,7 @@
 
 #define PT1000 (1)
 #define PT100  (2)
-#define RTD PT1000
+#define RTD PT100W
 //#define USE_MAX_DRDY  //uncomment this to use autoConvert mode of MAX31865 with DRDY pin
 
 #if(RTD == PT1000) 
@@ -66,7 +66,7 @@ TemperatureHistoryBuffer TemperatureHistory(60 * 60);  //60 min
 MeanBuffer<float> heaterPowerLog(30); //to calculate average output power for last 30*pwm_period sec
 
 // upper limit for temperature
-#define TEMPERATURE_UPPER_LIMIT 130
+#define TEMPERATURE_UPPER_LIMIT 140
 
 // standby after 30 minutes
 #define STANDBY_TIMEOUT 1800000
@@ -77,12 +77,14 @@ WebSocketsServer webSocket = WebSocketsServer(81);
                      
 // hardware pinout
 int relayPin = 0; // D3
+int steamPin = 2; // D4
 
 int maxCLK = 14; // D5 
 int maxSDO = 12; // D6
 int maxSDI = 13; // D7
 int maxCS = 4;   // D2
 int maxDRDY = 5; // D1
+
 
 // declare max31865 instance
 Adafruit_MAX31865 ptThermo = Adafruit_MAX31865(maxCS, maxSDI, maxSDO, maxCLK);
@@ -114,7 +116,7 @@ bool isStandby = false;
 // configuration values
 String global_preferred_wifi_mode;
 String global_wifi_client_ssid, global_wifi_client_password, global_wifi_ap_ssid, global_wifi_ap_password;
-float global_target_temp;
+float global_target_temp, global_target_steam_temp;
 float global_pid_kp, global_pid_ki, global_pid_kd; 
 int16_t global_pid_dt;
 int global_pwm_period;
@@ -128,6 +130,21 @@ String globalErrString = "";
 // loop control timestamps
 unsigned long measure_time = 0;
 unsigned long last_measure_time = 0;
+
+
+bool isSteamMode() {
+  return digitalRead(steamPin) == HIGH;
+}
+
+// returns target temp, taking into account steam pin
+float getTargetTemp() {
+  return isSteamMode() ?  global_target_steam_temp : global_target_temp;
+}
+
+// set target temp
+void setTargetTemp() {
+  pidSetpoint = getTargetTemp();
+}
 
 // *********
 // * SETUP *
@@ -150,6 +167,7 @@ void setup() {
   Serial.println("  WiFi Client | SSID: " + global_wifi_client_ssid + " | Length: " + global_wifi_client_ssid.length());
   Serial.println("  Password: " + global_wifi_client_password + " | Length: " + global_wifi_client_password.length());
   Serial.println("  Brewing Temp: " + String(global_target_temp));
+  Serial.println("  Steam Temp: " + String(global_target_steam_temp));
   
   Serial.printf("  PID: (%.1f, %.1f, %.1f, %d)\n\r", global_pid_kp, global_pid_ki, global_pid_kd, global_pid_dt);
   Serial.printf("  PWM period: %d\n\r", global_pwm_period);
@@ -265,12 +283,16 @@ void setup() {
   regulator.SetTunings(global_pid_kp, global_pid_ki, global_pid_kd);
   regulator.SetSampleTime(max(global_pid_dt, (int16_t)100)); //sets the period, in Milliseconds
   regulator.SetOutputLimits(0, 100);  //for PWM
-  pidSetpoint = global_target_temp;
+  setTargetTemp();
+
   //turn the PID on
   regulator.SetMode(AUTOMATIC);
 
   // init MAX31865 controller
   pinMode(maxDRDY, INPUT);
+  // steam pin
+  pinMode(steamPin, INPUT);
+
   ptThermo.begin(NUM_WIRES);
   ptThermo.enable50Hz(true);
   global_current_temp = ptThermo.temperature(RTD_RNOM, RTD_RREF);
@@ -293,6 +315,7 @@ void setup() {
   unsigned long bootTime = millis();
   Serial.println("* boot completed after " + String(bootTime / 1000.0) + " seconds");
 }
+
 
 void setupOTA() {
   // Port defaults to 8266
@@ -449,6 +472,9 @@ void loop() {
   // FAST LOOP - executed with every loop cycle
   // *********
 
+  // update steam, if needed
+  setTargetTemp();
+
   // let PWM do the job
   heater.tick();
   logPower(current_time);
@@ -561,7 +587,8 @@ void getTemp() {
                                  String(global_current_temp_f) + "|" + 
                                  String(isHeating) + "|" + 
                                  String(millis()) + "|" + 
-                                 String(isStandby));
+                                 String(isStandby) + "|" +
+                                 String(isSteamMode()));
 }
 
 void getConfig() {
@@ -574,6 +601,7 @@ void getConfig() {
   doc["wifi_ap_ssid"] = global_wifi_ap_ssid;
   doc["wifi_ap_password"] = global_wifi_ap_password;
   doc["target_temp"] = global_target_temp;
+  doc["target_steam_temp"] = global_target_steam_temp;
   doc["pid_kp"] = global_pid_kp;
   doc["pid_ki"] = global_pid_ki;
   doc["pid_kd"] = global_pid_kd;
@@ -630,8 +658,15 @@ void setConfig() {
   String target_temp = server.arg("target_temp");
   if (target_temp.length() > 0) {
     global_target_temp = constrain(target_temp.toFloat(), 0, TEMPERATURE_UPPER_LIMIT);
-    pidSetpoint = global_target_temp;
+    setTargetTemp();
   }
+
+  String target_steam_temp = server.arg("target_steam_temp");
+  if (target_steam_temp.length() > 0) {
+    global_target_steam_temp = constrain(target_steam_temp.toFloat(), 0, TEMPERATURE_UPPER_LIMIT);
+    setTargetTemp();
+  }
+
 
   String str = server.arg("pid_kp");
   if (str.length() > 0) {
@@ -659,7 +694,7 @@ void setConfig() {
     heater.setPeriod(global_pwm_period);
   }
   
-  str = server.arg("start_pid_tune");
+  str = server.arg("start_pid_tune");   
   if (str.length() > 0) {  //toggle tuner
     pidTunerState = ((pidTunerState == TUNE_IDLE) ? TUNE_START : TUNE_STOP); 
   }
@@ -738,6 +773,7 @@ void readConfig() {
     global_wifi_ap_ssid = doc["wifi_ap_ssid"].as<const char*>();
     global_wifi_ap_password = doc["wifi_ap_password"].as<const char*>();
     global_target_temp = doc["target_temp"].as<float>();
+    global_target_steam_temp = doc["target_steam_temp"].as<float>();
     global_pid_kp = doc["pid_kp"].as<float>();
     global_pid_ki = doc["pid_ki"].as<float>();
     global_pid_kd = doc["pid_kd"].as<float>();
@@ -754,6 +790,7 @@ void writeConfig() {
   doc["wifi_ap_ssid"] = global_wifi_ap_ssid;
   doc["wifi_ap_password"] = global_wifi_ap_password;
   doc["target_temp"] = global_target_temp;
+  doc["target_steam_temp"] = global_target_steam_temp;
   doc["pid_kp"] = global_pid_kp;
   doc["pid_ki"] = global_pid_ki;
   doc["pid_kd"] = global_pid_kd;

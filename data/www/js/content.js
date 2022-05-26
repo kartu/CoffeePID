@@ -40,6 +40,7 @@ function getSettingsContent() {
           <div class="tab-content">
             <div class="tab-pane active mt-3" id="temp">
               <form id="tempSettingsForm">
+                <!-- Brewing -->
                 <div class="flex-row d-flex mx-1 mb-2">
                   <h5 class="flex-grow-1 mb-0">Brewing</h5>
                   <div><span class="badge badge-pill badge-light font-weight-bold my-auto" data-toggle="tooltip" data-placement="left" title="Set the target brewing temperature for your coffee">i</span></div>
@@ -51,6 +52,20 @@ function getSettingsContent() {
                   <div class="col-10">
                     <input type="number" data-suffix="°C" min="0" max="160" value="0" step="1" class="form-control-lg" id="inputTargetTemp" aria-label="coffee target temperature">
                   </div>
+                </div>
+
+                <!-- Steam -->
+                <div class="flex-row d-flex mx-1 mb-2">
+                    <h5 class="flex-grow-1 mb-0">Steam</h5>
+                    <div><span class="badge badge-pill badge-light font-weight-bold my-auto" data-toggle="tooltip" data-placement="left" title="Set the target steam temperature">i</span></div>
+                </div>
+                <div class="form-group form-row">
+                    <div class="col-2 my-auto text-center">
+                        <img src="img/thermo.svg" width="34" height="34" alt="target steam temperature" />
+                    </div>
+                    <div class="col-10">
+                        <input type="number" data-suffix="°C" min="0" max="160" value="0" step="1" class="form-control-lg" id="inputTargetSteamTemp" aria-label="steam target temperature">
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-success btn-block btn-lg">Save changes</button>
               </form>

@@ -1,2 +1,6 @@
 
 .DS_Store
+*.min.js
+*.opt.css
+*.gz
+node_modules
