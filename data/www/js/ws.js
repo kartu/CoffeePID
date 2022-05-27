@@ -181,6 +181,8 @@ function onMessage(evt) {
         targetTemperature = obj.target;
     }
 
+    $('#steam').css('visibility', obj.steam ? 'visible' : 'hidden');
+
     if (obj.new_config !== undefined) {
         getSettings();
     }

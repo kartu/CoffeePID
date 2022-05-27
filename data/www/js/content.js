@@ -1,7 +1,12 @@
 function getHomeContent() {
   return `
   <div class="rounded my-auto" style="background: rgba(46, 51, 56, 0.7)!important;">
-    <h1 class="row" style="margin: 8px;"><img src="img/water-temp.svg" alt="Hot water" width="50" height="50" />&nbsp;&nbsp;<span id="currentTemp">--&nbsp;</span>&deg;C&nbsp;<div id="state-circle" class="circle"></div></h1>
+    <h1 class="row" style="margin: 8px;">
+      <img src="img/water-temp.svg" alt="Hot water" width="50" height="50" />&nbsp;&nbsp;
+      <span id="currentTemp">--&nbsp;</span>&deg;C&nbsp;
+      <div id="state-circle" class="circle"></div>
+      <img src="img/steam.svg" style="color: white" alt="Hot water" width="50" height="50" />
+    </h1>
   </div>
   <div style="bottom: 8px; left: 8px; background: rgba(46, 51, 56, 0.7)!important;" class="position-absolute rounded my-auto">
     <span hidden id="tuningLabel" style="margin: 8px; font-size: x-large; font-weight: bold; color: blue;">TUNING</span>

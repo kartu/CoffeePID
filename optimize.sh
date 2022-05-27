@@ -19,7 +19,12 @@ minify() {
   file=js/"$1".js
   min_file=js/"$1".min.js
 
+  echo "minifying $file"
+
   uglifyjs "$file" > "$min_file"
+
+  echo "gzipping $file"
+
   $gzip "$min_file"
 }
 
@@ -36,7 +41,15 @@ rm -rf css_prg
 minify app
 #minify content
 minify ws
+
+$gzip js/*.min.js
 $gzip js/content.js
+$gzip img/*.png
+$gzip img/*.svg
+$gzip css/*.opt.css
 
 # zip all html files
 $gzip *.html
+$gzip *.ico
+
+# TODO upload only gz files

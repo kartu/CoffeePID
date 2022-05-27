@@ -86,6 +86,7 @@ void sendState() {
   
   if(time >= nextSendStatus) {
     doc["millis"] = time;
+    doc["steam"] = isSteamMode();
 
     if (globalFaultCode) doc["fault"] = globalFaultCode;
     if (globalErrString != "") doc["error"] = globalErrString;
