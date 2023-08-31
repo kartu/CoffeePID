@@ -76,7 +76,7 @@ ESP8266WebServer server(80);
 WebSocketsServer webSocket = WebSocketsServer(81);
                      
 // hardware pinout
-int relayPin = 0; // D3
+int relayPin = 0; // D3   alternative - 3 => RX pin, alternative 15 => D8, connected to 3.3V
 int steamPin = 2; // D4
 
 int maxCLK = 14; // D5 

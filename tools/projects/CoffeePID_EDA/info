@@ -1,0 +1,302 @@
+{
+  "uuid": "0258a8674ba08fbce6f7ffa3c1816c3f",
+  "path": "Offline/CoffeePID_EDA",
+  "name": "CoffeePID_EDA",
+  "content": "",
+  "created_at": "2022-12-23 15:50:39",
+  "updated_at": "2023-01-08 23:29:44",
+  "stick": "",
+  "documents": [
+    {
+      "uuid": "0830f8ffb4334deeeb936d73665970b4",
+      "title": "Wemos D1",
+      "description": "",
+      "docType": "1",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "8aa07ff479c247b5bd28483e113bc758": 1,
+        "d7d418a3758546389927e440f5b766a9": 1,
+        "09c9bcf4f0e749d6ace711f38aa5d68f": 1,
+        "ae5b8fe654e145c79c2f39f49c4367ff": 3
+      },
+      "BOM": [
+        [
+          "Value",
+          "Quantity",
+          "Package",
+          "Components",
+          "CustomPara"
+        ],
+        [
+          "WEMOS-D1-MINI",
+          1,
+          "WEMOS-D1-MINI",
+          "1",
+          {
+            "BOM_Manufacturer Part": "",
+            "puuid": "60dbae21e6e84e5c94b66a615ffea6a2",
+            "uuid": "8aa07ff479c247b5bd28483e113bc758"
+          }
+        ],
+        [
+          "AC-03-3",
+          1,
+          "AC-03-3 FOOTPRINT",
+          "U1",
+          {
+            "BOM_Manufacturer": "AZDelivery",
+            "BOM_Manufacturer Part": "B07C4THP6G",
+            "BOM_Supplier": "Amazon",
+            "BOM_Supplier Part": "‎ 3x 220 V vers 3.3 V",
+            "puuid": "535f1a7c668a47c1aa31f83e724d7fea",
+            "uuid": "09c9bcf4f0e749d6ace711f38aa5d68f"
+          }
+        ],
+        [
+          "MAX31865",
+          1,
+          "MAX31865_MODULE",
+          "U2",
+          {
+            "BOM_Manufacturer Part": "",
+            "puuid": "db0c3ad8dd074feebb1acf3da4448d5e",
+            "uuid": "d7d418a3758546389927e440f5b766a9"
+          }
+        ],
+        [
+          "AKL 101-02",
+          3,
+          "AKL 101-02",
+          "U3,U4,U5",
+          {
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "puuid": "9399a7e192ef494cac4c51adf6566b25",
+            "uuid": "ae5b8fe654e145c79c2f39f49c4367ff"
+          }
+        ],
+        [
+          "AKL 101-02",
+          2,
+          "AKL 101-02",
+          "POWER-IN,RTD",
+          {
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "puuid": "9399a7e192ef494cac4c51adf6566b25",
+            "uuid": "ae5b8fe654e145c79c2f39f49c4367ff"
+          }
+        ],
+        [
+          "NODEMCU-ESP8266",
+          1,
+          "NODEMCU-ESP8266MOD",
+          "U6",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C111436",
+            "BOM_Manufacturer": "Ai-Thinker",
+            "BOM_Manufacturer Part": "NodeMCU-8266",
+            "puuid": "7037d70f6f3c4d96801cef52b59b1a17",
+            "uuid": "05e176af5e5b49e8ba9df33008638365"
+          }
+        ],
+        [
+          "AC-03-3",
+          1,
+          "AC-03-3 FOOTPRINT",
+          "U8",
+          {
+            "BOM_Manufacturer": "AZDelivery",
+            "BOM_Manufacturer Part": "B07C4THP6G",
+            "BOM_Supplier": "Amazon",
+            "BOM_Supplier Part": "‎ 3x 220 V vers 3.3 V",
+            "puuid": "535f1a7c668a47c1aa31f83e724d7fea",
+            "uuid": "09c9bcf4f0e749d6ace711f38aa5d68f"
+          }
+        ],
+        [
+          "MAX31865",
+          1,
+          "MAX31865_MODULE",
+          "U9",
+          {
+            "BOM_Manufacturer Part": "",
+            "puuid": "db0c3ad8dd074feebb1acf3da4448d5e",
+            "uuid": "d7d418a3758546389927e440f5b766a9"
+          }
+        ]
+      ],
+      "updateTime": 1673215147,
+      "createTime": 1671807040,
+      "histories": [],
+      "created_at": "2022-12-23 15:50:40",
+      "updated_at": "2023-01-08 22:59:07"
+    },
+    {
+      "uuid": "d96e75fbe98cd9ca1e44cdbd67753101",
+      "title": "NodeMCU",
+      "description": "",
+      "docType": "1",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "05e176af5e5b49e8ba9df33008638365": 1,
+        "09c9bcf4f0e749d6ace711f38aa5d68f": 1,
+        "d7d418a3758546389927e440f5b766a9": 1,
+        "ae5b8fe654e145c79c2f39f49c4367ff": 2
+      },
+      "BOM": [
+        [
+          "Value",
+          "Quantity",
+          "Package",
+          "Components",
+          "CustomPara"
+        ],
+        [
+          "WEMOS-D1-MINI",
+          1,
+          "WEMOS-D1-MINI",
+          "1",
+          {
+            "BOM_Manufacturer Part": "",
+            "puuid": "60dbae21e6e84e5c94b66a615ffea6a2",
+            "uuid": "8aa07ff479c247b5bd28483e113bc758"
+          }
+        ],
+        [
+          "AC-03-3",
+          1,
+          "AC-03-3 FOOTPRINT",
+          "U1",
+          {
+            "BOM_Manufacturer": "AZDelivery",
+            "BOM_Manufacturer Part": "B07C4THP6G",
+            "BOM_Supplier": "Amazon",
+            "BOM_Supplier Part": "‎ 3x 220 V vers 3.3 V",
+            "puuid": "535f1a7c668a47c1aa31f83e724d7fea",
+            "uuid": "09c9bcf4f0e749d6ace711f38aa5d68f"
+          }
+        ],
+        [
+          "MAX31865",
+          1,
+          "MAX31865_MODULE",
+          "U2",
+          {
+            "BOM_Manufacturer Part": "",
+            "puuid": "db0c3ad8dd074feebb1acf3da4448d5e",
+            "uuid": "d7d418a3758546389927e440f5b766a9"
+          }
+        ],
+        [
+          "AKL 101-02",
+          3,
+          "AKL 101-02",
+          "U3,U4,U5",
+          {
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "puuid": "9399a7e192ef494cac4c51adf6566b25",
+            "uuid": "ae5b8fe654e145c79c2f39f49c4367ff"
+          }
+        ],
+        [
+          "AKL 101-02",
+          2,
+          "AKL 101-02",
+          "POWER-IN,RTD",
+          {
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "puuid": "9399a7e192ef494cac4c51adf6566b25",
+            "uuid": "ae5b8fe654e145c79c2f39f49c4367ff"
+          }
+        ],
+        [
+          "NODEMCU-ESP8266",
+          1,
+          "NODEMCU-ESP8266MOD",
+          "U6",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C111436",
+            "BOM_Manufacturer": "Ai-Thinker",
+            "BOM_Manufacturer Part": "NodeMCU-8266",
+            "puuid": "7037d70f6f3c4d96801cef52b59b1a17",
+            "uuid": "05e176af5e5b49e8ba9df33008638365"
+          }
+        ],
+        [
+          "AC-03-3",
+          1,
+          "AC-03-3 FOOTPRINT",
+          "U8",
+          {
+            "BOM_Manufacturer": "AZDelivery",
+            "BOM_Manufacturer Part": "B07C4THP6G",
+            "BOM_Supplier": "Amazon",
+            "BOM_Supplier Part": "‎ 3x 220 V vers 3.3 V",
+            "puuid": "535f1a7c668a47c1aa31f83e724d7fea",
+            "uuid": "09c9bcf4f0e749d6ace711f38aa5d68f"
+          }
+        ],
+        [
+          "MAX31865",
+          1,
+          "MAX31865_MODULE",
+          "U9",
+          {
+            "BOM_Manufacturer Part": "",
+            "puuid": "db0c3ad8dd074feebb1acf3da4448d5e",
+            "uuid": "d7d418a3758546389927e440f5b766a9"
+          }
+        ]
+      ],
+      "updateTime": 1673216984,
+      "createTime": 1673211076,
+      "histories": [],
+      "created_at": "2023-01-08 21:51:16",
+      "updated_at": "2023-01-08 23:29:44"
+    },
+    {
+      "uuid": "14f613419fbfa7099e84fe6b4c393002",
+      "puuid": "0258a8674ba08fbce6f7ffa3c1816c3f",
+      "title": "PCB_CoffeePID_EDA",
+      "filename": "PCB_CoffeePID_EDA.json",
+      "description": "",
+      "docType": "3",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "60dbae21e6e84e5c94b66a615ffea6a2": 1,
+        "535f1a7c668a47c1aa31f83e724d7fea": 1,
+        "db0c3ad8dd074feebb1acf3da4448d5e": 1
+      },
+      "BOM": [],
+      "updateTime": 1671811584,
+      "createTime": 1671809358,
+      "histories": [],
+      "created_at": "2022-12-23 16:29:18",
+      "updated_at": "2022-12-23 17:06:24"
+    }
+  ],
+  "sort": [
+    "0830f8ffb4334deeeb936d73665970b4",
+    "d96e75fbe98cd9ca1e44cdbd67753101"
+  ],
+  "title": "CoffeePID_EDA",
+  "foldername": "CoffeePID_EDA",
+  "schfilename": "CoffeePID_EDA.json",
+  "schfilemtime": 1673216984752
+}

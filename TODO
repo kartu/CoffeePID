@@ -1,0 +1,15 @@
+* How to connect max31865 - done
+hardware pinout
+int relayPin = 0; // D3   alternative - 3 => RX pin, alternative 15 => D8, connected to 3.3V
+int steamPin = 2; // D4
+
+int maxCLK = 14; // D5 
+int maxSDO = 12; // D6
+int maxSDI = 13; // D7
+int maxCS = 4;   // D2
+int maxDRDY = 5; // D1
+
+
+* Build schematics without connectors 
+
+ESP32 -https://medium.com/@epabrego/1-micropython-esp32-max31865-rtd-pt100-9e9c02e2b55d
